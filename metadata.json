@@ -1,0 +1,8 @@
+
+{
+  "name": "Urban Agency - Premium Real Estate",
+  "description": "An ultra-premium, immersive digital experience for a modern real estate brand featuring motion design, creative layouts, and high-end aesthetics.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

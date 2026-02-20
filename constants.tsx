@@ -11,8 +11,8 @@ export const PROPERTIES: Property[] = [
   {
     id: '1',
     title: 'The Obsidian Sky',
-    price: '$2,450,000',
-    location: 'Lower Manhattan, NY',
+    price: '₹2,450,000',
+    location: 'Jamnagar, New Delhi',
     type: 'Penthouse',
     image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=2000',
     beds: 3,
@@ -24,8 +24,8 @@ export const PROPERTIES: Property[] = [
   {
     id: '2',
     title: 'Lumina Residences',
-    price: '$1,890,000',
-    location: 'Beverly Hills, CA',
+    price: '₹1,890,000',
+    location: 'Mumbai, India',
     type: 'Villa',
     image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=2000',
     beds: 4,
@@ -37,8 +37,8 @@ export const PROPERTIES: Property[] = [
   {
     id: '3',
     title: 'Neon Garden Loft',
-    price: '$980,000',
-    location: 'Shoreditch, London',
+    price: '₹980,000',
+    location: 'Jaipur, India',
     type: 'Loft',
     image: 'https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=2000',
     beds: 2,
@@ -50,7 +50,7 @@ export const PROPERTIES: Property[] = [
   {
     id: '4',
     title: 'Azure Waters',
-    price: '$3,200,000',
+    price: '₹3,200,000',
     location: 'Palm Jumeirah, Dubai',
     type: 'Mansion',
     image: 'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&q=80&w=2000',

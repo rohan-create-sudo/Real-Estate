@@ -55,7 +55,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-1">Call Us</h4>
-                  <p className="text-xl font-black text-slate-900">+1 (800) URBAN-LIFE</p>
+                  <p className="text-xl font-black text-slate-900">+91 9875X66X89</p>
                 </div>
               </motion.div>
 
@@ -70,7 +70,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-1">Headquarters</h4>
-                  <p className="text-xl font-black text-slate-900">77 Creative Ave, London</p>
+                  <p className="text-xl font-black text-slate-900">Sahadra, Delhi</p>
                 </div>
               </motion.div>
             </div>

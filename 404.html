@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Urban Agency</title>
+    <script>
+      (function () {
+        var locationRef = window.location;
+        var pathParts = locationRef.pathname.split("/").filter(Boolean);
+        var keepSegments = locationRef.hostname.endsWith("github.io") && pathParts.length > 0 ? 1 : 0;
+        var redirectPath =
+          locationRef.protocol +
+          "//" +
+          locationRef.hostname +
+          (locationRef.port ? ":" + locationRef.port : "") +
+          "/" +
+          pathParts.slice(0, keepSegments).join("/") +
+          "/?/" +
+          pathParts.slice(keepSegments).join("/").replace(/&/g, "~and~") +
+          (locationRef.search ? "&" + locationRef.search.slice(1).replace(/&/g, "~and~") : "") +
+          locationRef.hash;
+        locationRef.replace(redirectPath);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>

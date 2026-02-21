@@ -5,62 +5,210 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Urban Agency | Creative Premium Real Estate</title>
+    <script>
+      (function () {
+        var locationRef = window.location;
+        if (locationRef.search[1] === "/") {
+          var decoded = locationRef.search
+            .slice(1)
+            .split("&")
+            .map(function (segment) {
+              return segment.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(null, "", decoded + locationRef.hash);
+        }
+      })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-      body {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        background-color: #f8fafc;
-        color: #0f172a;
-        overflow-x: hidden;
-      }
-      .glass {
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-      }
-      .text-gradient {
-        background: linear-gradient(to right, #1e293b, #7c3aed, #2563eb);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-      .bg-mesh {
-        background-image: 
-          radial-gradient(at 0% 0%, hsla(210, 40%, 96%, 1) 0, transparent 50%), 
-          radial-gradient(at 50% 0%, hsla(225, 60%, 94%, 0.5) 0, transparent 50%), 
-          radial-gradient(at 100% 0%, hsla(260, 60%, 94%, 0.5) 0, transparent 50%);
-        background-color: #f8fafc;
-      }
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #f1f5f9;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 10px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8;
-      }
-    </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "framer-motion": "https://esm.sh/framer-motion@^12.34.2",
-    "lucide-react": "https://esm.sh/lucide-react@^0.574.0",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4"
-  }
-}
-</script>
-</head>
-  <body>
-    <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body class="bg-mesh antialiased selection:bg-blue-500/30 selection:text-blue-200">
+    <header class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+      <nav id="main-nav" class="pointer-events-auto flex items-center justify-between px-4 py-3 md:px-8 md:py-4 rounded-full glass transition-all duration-500 ease-in-out w-full md:w-[900px]">
+        <a href="./index.html" class="flex items-center gap-2 group cursor-pointer">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-blue-500 flex items-center justify-center font-bold text-white group-hover:rotate-12 transition-transform">U</div>
+          <span class="font-bold text-lg tracking-tight hidden sm:block text-slate-900">URBAN AGENCY</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="./index.html" class="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors relative group">Home<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-300"></span></a>
+          <a href="./properties.html" class="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors relative group">Properties<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-300"></span></a>
+          <a href="./contact.html" class="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors relative group">Contact<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-300"></span></a>
+        </div>
+        <div class="flex items-center gap-4">
+          <a class="hidden md:flex items-center gap-2 px-5 py-2 bg-slate-900 text-white text-sm font-bold rounded-full hover:bg-blue-600 transition-all transform active:scale-95 shadow-md" href="./contact.html">
+            Inquire Now
+          </a>
+          <button id="mobile-toggle" class="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-slate-900/5 text-slate-900" aria-label="Toggle mobile menu">Menu</button>
+        </div>
+      </nav>
+      <div id="mobile-menu" class="hidden md:hidden fixed top-24 left-4 right-4 p-6 glass rounded-[2rem] pointer-events-auto z-40">
+        <div class="flex flex-col gap-6">
+          <a href="./index.html" class="text-2xl font-bold text-slate-900">Home</a>
+          <a href="./properties.html" class="text-2xl font-bold text-slate-900">Properties</a>
+          <a href="./contact.html" class="text-2xl font-bold text-slate-900">Contact</a>
+          <hr class="border-slate-200" />
+          <a class="w-full py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-2xl font-bold shadow-lg text-center" href="./contact.html">Inquire Now</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="relative w-full overflow-hidden">
+      <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+          <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&q=80&w=2500" class="w-full h-full object-cover brightness-[0.85]" alt="Cityscape" />
+          <div class="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-[#f8fafc]"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10 text-center reveal">
+          <span class="inline-block px-4 py-1 rounded-full glass border border-white/40 text-[10px] font-black tracking-[0.3em] text-blue-600 uppercase mb-8 shadow-sm">Redefining Modern Living</span>
+          <h1 class="text-6xl md:text-9xl font-black mb-8 leading-[0.9] tracking-tighter text-slate-900">THE <span class="text-gradient">URBAN</span> <br /> PERSPECTIVE.</h1>
+          <p class="max-w-xl mx-auto text-slate-600 text-lg md:text-xl font-semibold mb-10 leading-relaxed">Curating architectural masterpieces that transform the way you experience space, light, and city living.</p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a class="group relative px-8 py-4 bg-slate-900 text-white font-bold rounded-full overflow-hidden transition-all hover:pr-12 shadow-xl" href="./properties.html">Explore Properties</a>
+            <button class="flex items-center gap-3 px-8 py-4 glass text-slate-900 font-bold rounded-full hover:bg-white transition-all shadow-md">Watch Story</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-32 container mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div class="reveal">
+            <h2 class="text-4xl md:text-6xl font-black leading-tight mb-8 text-slate-900">WE DON'T JUST SELL <br /><span class="text-blue-600 italic">REAL ESTATE</span>, WE <br />ARCHITECT EMOTION.</h2>
+          </div>
+          <div class="text-lg md:text-xl text-slate-600 leading-relaxed font-medium reveal">
+            Urban Agency represents the fusion of high-end aesthetics and functional innovation. We believe that your home is the canvas of your life, and our mission is to provide the finest tools for your self-expression.
+            <div class="mt-8 flex gap-4">
+              <div class="h-0.5 w-12 bg-blue-500 mt-4"></div>
+              <p class="text-slate-900 italic font-bold">Marc J. Urban - Founder</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-20 bg-white border-y border-slate-100">
+        <div class="container mx-auto px-6">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+            <div class="reveal"><div class="text-4xl md:text-6xl font-black mb-2 text-gradient">120+</div><div class="text-slate-400 font-black uppercase tracking-widest text-[10px]">Properties Sold</div></div>
+            <div class="reveal"><div class="text-4xl md:text-6xl font-black mb-2 text-gradient">45</div><div class="text-slate-400 font-black uppercase tracking-widest text-[10px]">Active Listings</div></div>
+            <div class="reveal"><div class="text-4xl md:text-6xl font-black mb-2 text-gradient">12</div><div class="text-slate-400 font-black uppercase tracking-widest text-[10px]">Years Experience</div></div>
+            <div class="reveal"><div class="text-4xl md:text-6xl font-black mb-2 text-gradient">98%</div><div class="text-slate-400 font-black uppercase tracking-widest text-[10px]">Happy Clients</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-32 container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+          <div>
+            <span class="text-blue-600 font-black tracking-widest text-xs uppercase mb-4 block">Selected Listings</span>
+            <h2 class="text-5xl md:text-7xl font-black tracking-tighter text-slate-900">FEATURED <br /> COLLECTIONS.</h2>
+          </div>
+          <a class="px-8 py-4 glass border border-slate-200 rounded-full font-bold hover:bg-slate-900 hover:text-white transition-all shadow-sm" href="./properties.html">View All Properties</a>
+        </div>
+        <div id="home-featured-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+      </section>
+
+      <section class="py-32 container mx-auto px-6">
+        <div class="glass rounded-[3rem] overflow-hidden grid grid-cols-1 lg:grid-cols-2 min-h-[600px] bg-white/50 border-white">
+          <div class="relative group overflow-hidden">
+            <img id="slider-image" src="" class="w-full h-full object-cover transition-all duration-700" alt="Property preview" />
+            <div class="absolute bottom-10 left-10 flex gap-4">
+              <button id="slider-prev" class="w-14 h-14 rounded-full glass flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all shadow-lg">&lt;</button>
+              <button id="slider-next" class="w-14 h-14 rounded-full glass flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all shadow-lg">&gt;</button>
+            </div>
+          </div>
+          <div class="p-12 md:p-20 flex flex-col justify-center">
+            <span class="text-blue-600 font-black tracking-widest uppercase text-xs mb-4 block">Exclusive Opportunity</span>
+            <h3 id="slider-title" class="text-4xl md:text-5xl font-black mb-6 leading-tight text-slate-900"></h3>
+            <p id="slider-description" class="text-slate-500 text-lg leading-relaxed mb-10 max-w-md font-medium"></p>
+            <div class="flex flex-wrap gap-4 mb-10">
+              <div class="px-6 py-4 glass rounded-2xl border border-slate-100 bg-white/80">
+                <span class="block text-[10px] text-slate-400 uppercase font-black tracking-widest mb-1">Price</span>
+                <span id="slider-price" class="text-xl font-black text-slate-900"></span>
+              </div>
+              <div class="px-6 py-4 glass rounded-2xl border border-slate-100 bg-white/80">
+                <span class="block text-[10px] text-slate-400 uppercase font-black tracking-widest mb-1">Sq Ft</span>
+                <span id="slider-sqft" class="text-xl font-black text-slate-900"></span>
+              </div>
+            </div>
+            <button class="flex items-center gap-2 text-slate-900 font-black group hover:text-blue-600 transition-colors">Deep Dive Into This Property</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-32 bg-slate-50">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-20">
+            <h2 class="text-5xl md:text-7xl font-black tracking-tighter mb-6 text-slate-900">THE ADVANTAGE.</h2>
+            <p class="text-slate-500 text-lg max-w-2xl mx-auto font-medium">Propelling real estate into the next decade through technology and design thinking.</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-12 glass rounded-[2.5rem] border border-white bg-white shadow-xl shadow-slate-200/50 reveal">
+              <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 to-purple-600 mb-8"></div>
+              <h4 class="text-2xl font-black mb-4 text-slate-900">Ai Valuations</h4>
+              <p class="text-slate-500 leading-relaxed font-medium">Predictive analytics for tomorrow's property value today.</p>
+            </div>
+            <div class="p-12 glass rounded-[2.5rem] border border-white bg-white shadow-xl shadow-slate-200/50 reveal">
+              <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 to-purple-600 mb-8"></div>
+              <h4 class="text-2xl font-black mb-4 text-slate-900">Virtual Immersion</h4>
+              <p class="text-slate-500 leading-relaxed font-medium">Step into your future home from anywhere on the planet.</p>
+            </div>
+            <div class="p-12 glass rounded-[2.5rem] border border-white bg-white shadow-xl shadow-slate-200/50 reveal">
+              <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 to-purple-600 mb-8"></div>
+              <h4 class="text-2xl font-black mb-4 text-slate-900">Global Network</h4>
+              <p class="text-slate-500 leading-relaxed font-medium">A portfolio that spans the most iconic cities globally.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-32">
+        <div class="container mx-auto px-6">
+          <div class="relative overflow-hidden rounded-[4rem] bg-slate-900 py-32 px-12 text-center shadow-2xl">
+            <div class="absolute -top-1/2 -right-1/2 w-full h-full bg-blue-500 rounded-full blur-3xl pointer-events-none pulse-bg"></div>
+            <h2 class="text-6xl md:text-8xl font-black text-white tracking-tighter mb-10 relative z-10">READY TO <br /> MOVE IN?</h2>
+            <a class="relative z-10 inline-block px-12 py-6 bg-white text-slate-900 text-xl font-black rounded-full shadow-2xl hover:scale-105 transition-transform active:scale-95" href="./contact.html">Start Your Journey</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="py-20 container mx-auto px-6 border-t border-slate-200">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+        <div class="col-span-1 md:col-span-2">
+          <div class="flex items-center gap-2 mb-8">
+            <div class="w-10 h-10 rounded-lg bg-slate-900 flex items-center justify-center font-bold text-white">U</div>
+            <span class="font-bold text-2xl tracking-tighter uppercase text-slate-900">Urban Agency</span>
+          </div>
+          <p class="text-slate-500 text-lg max-w-sm leading-relaxed font-medium">Leading the digital transformation of premium real estate through architectural excellence and modern service.</p>
+        </div>
+        <div>
+          <h5 class="font-black mb-6 text-slate-900 uppercase tracking-widest text-xs">Navigation</h5>
+          <ul class="space-y-4 text-slate-500 font-bold">
+            <li><a href="./index.html" class="hover:text-blue-600 transition-colors">Home</a></li>
+            <li><a href="./properties.html" class="hover:text-blue-600 transition-colors">Properties</a></li>
+            <li><a href="./contact.html" class="hover:text-blue-600 transition-colors">Contact</a></li>
+            <li><a href="#" class="hover:text-blue-600 transition-colors">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="font-black mb-6 text-slate-900 uppercase tracking-widest text-xs">Social</h5>
+          <ul class="space-y-4 text-slate-500 font-bold">
+            <li><a href="#" class="hover:text-blue-600 transition-colors">Instagram</a></li>
+            <li><a href="#" class="hover:text-blue-600 transition-colors">LinkedIn</a></li>
+            <li><a href="#" class="hover:text-blue-600 transition-colors">Twitter</a></li>
+            <li><a href="#" class="hover:text-blue-600 transition-colors">Dribbble</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-slate-100 gap-4">
+        <p class="text-slate-400 text-sm font-semibold">© 2024 Urban Agency. All rights reserved.</p>
+        <p class="text-slate-400 text-sm italic font-medium">Crafted for Excellence.</p>
+      </div>
+    </footer>
+    <script type="module" src="./js/main.js"></script>
+  </body>
 </html>
